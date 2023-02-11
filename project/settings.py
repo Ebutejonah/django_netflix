@@ -37,7 +37,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','safe-dingo-96akvy2o5h7g45lhw1ydkrle.herokudns.com']
+ALLOWED_HOSTS = ['*']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -99,17 +99,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 #DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-  #  },
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    },
 #}
-#DATABASE_URL = os.environ['DATABASE_URL']
-DATABASE_URL = config('DATABASE_URL')
 
-DATABASES = {}
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASES = {
+    'default':{
+        'ENGINE': "django.db.backends.postgresql",
+        'NAME': "netflixclone",
+        'USER': "jonah",
+        'PASSWORD': config('PASSWORD'),
+        'HOST': "database-3.ca0j0w5i5vnr.us-east-1.rds.amazonaws.com",
+        'PORT': "5432",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -166,6 +171,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 #AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_STORAGE_BUCKET_NAME = 'nettflixclone'
 
