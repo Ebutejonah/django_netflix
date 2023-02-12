@@ -35,7 +35,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1','djangonetflix-production.up.railway.app']
 
