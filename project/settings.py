@@ -37,7 +37,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -108,10 +108,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': "netflixclone",
-        'USER': "jonah",
+        'NAME': config('NAME'),
+        'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
-        'HOST': "database-3.ca0j0w5i5vnr.us-east-1.rds.amazonaws.com",
+        'HOST': config('HOST'),
         'PORT': "5432",
     }
 }
@@ -189,10 +189,3 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-load_dotenv()
-
-django_heroku.settings(locals())
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
