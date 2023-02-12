@@ -29,15 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-SECRET_KEY = config('SECRET_KEY')
-#SECRET_KEY = os.environ["SECRET_KEY"]
+#SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1']
+ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1','djangonetflix-production.up.railway.app']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -112,10 +112,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD': config('PASSWORD'),
-        'HOST': config('HOST'),
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'HOST': os.environ['HOST'],
         'PORT': "5432",
     }
 }
@@ -196,3 +196,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ["127.0.0.1"]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+CSRF_TRUSTED_ORIGINS = ['https://netchlix.com','https://www.netchlix.com','http://127.0.0.1','https://djangonetflix-production.up.railway.app']
