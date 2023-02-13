@@ -35,7 +35,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1','djangonetflix-production.up.railway.app']
 
@@ -112,10 +112,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': os.environ['NAME'],
-        'USER': os.environ['USER'],
-        'PASSWORD': os.environ['PASSWORD'],
-        'HOST': os.environ['HOST'],
+        'NAME': os.environ['NAME'],#config('NAME'),
+        'USER': os.environ['USER'],#config('USER'),
+        'PASSWORD': os.environ['PASSWORD'],#config('PASSWORD'),
+        'HOST': os.environ['HOST'],#config('HOST'),
         'PORT': "5432",
     }
 }
