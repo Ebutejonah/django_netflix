@@ -29,8 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-#SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY = os.environ["SECRET_KEY"]
 
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
@@ -112,10 +112,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': os.environ['NAME'],#config('NAME'),
-        'USER': os.environ['USER'],#config('USER'),
-        'PASSWORD': os.environ['PASSWORD'],#config('PASSWORD'),
-        'HOST': os.environ['HOST'],#config('HOST'),
+        'NAME': config('NAME'),#os.environ['NAME'],
+        'USER': config('USER'),#os.environ['USER'],
+        'PASSWORD': config('PASSWORD'),#os.environ['PASSWORD'],
+        'HOST': config('HOST'),#os.environ['HOST'],
         'PORT': "5432",
     }
 }
