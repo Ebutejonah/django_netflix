@@ -40,6 +40,7 @@ class Movie(models.Model):
 class Video(models.Model):
     title=models.CharField(max_length=200, blank=True,null=True)
     file=models.FileField(upload_to='movies')
+    age_limit=models.CharField(max_length=10,choices=AGE_CHOICES, blank=True, null=True)
 
     def __str__(self):
         return self.title
