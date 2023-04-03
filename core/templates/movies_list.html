@@ -10,12 +10,21 @@
     <div class="bg-black pb-16 sm:pb-0">
         <div class="overflow-hidden py-2">
             <section class="md:hidden">{%include 'partials/navbar.html'%}</section> 
-            <section id="movies_list" class="bg-black hidden md:flex flex-col space-y-12" style="background-image:url('{{showcase.flyers.url}}');width:100vw;height:53vw;">
-                {%include 'partials/navbar.html'%}
+            {%if profile.age_limit == 'Adult'%}
+            <section id="movies_list" class="bg-black hidden md:flex flex-col space-y-80 max-w-5xl justify-center mx-auto" style="background-image:url('{{showcase.flyers.url}}');width:100vw;height:53rem">
+                <div class="-mt-96 xl:-mt-10">
+                    {%include 'partials/navbar.html'%}
+                </div>
+            {%else%}  
+            <section id="movies_list" class="bg-black hidden md:flex flex-col space-y-36 max-w-5xl justify-center mx-auto" style="background-image:url('{{showcase.flyers.url}}');width:100vw;height:53rem"> 
+                <div class="-mt-96 lg:-mt-60 xl:-mt-0">
+                    {%include 'partials/navbar.html'%}
+                </div>
+            {%endif%}
                 <div class="md:pt-3 lg:pt-28 xl:pt-64 ml-4">
                     <div id="movie_title" class="opacity-0 trasition ease-in-out duration-1000">
                         <div  class="text-white font-semibold pb-3 px-2 lg:pb-0 text-xl md:text-4xl xl:text-5xl">{{showcase.title}}</div>
-                        <div class=" text-white font-semibold lg:pt-12 px-2 md:text-lg 2xl:text-2xl lg:text-xl md:w-full">{{showcase.description}}</div>
+                        <div class="text-gray-100 font-semibold lg:pt-12 px-2 md:text-lg 2xl:text-2xl lg:text-xl md:w-full">{{showcase.description}}</div>
                     </div> 
                     <div class="flex pt-2 space-x-4 lg:mt-4">
                         <a href="{{film.file.url}}">
@@ -29,7 +38,7 @@
                     </div>    
                 </div>           
             </section>
-            <p class="text-gray-200 text-lg xl:text-3xl font-bold pt-5 md:ml-20 lg:ml-28 xl:ml-44">Popular on Netflix</p>
+            <p class="text-gray-200 text-lg xl:text-3xl font-bold pt-5 md:ml-20 lg:ml-28 xl:ml-44 pl-3">Popular on Netflix</p>
             <div class="bg-black pb-0 md:pb-28 flex flex-wrap md:space-x-4 min-w-full justify-center md:space-y-2 md:m-3 md:flex-1">
                 {%for movie in movies%}
                     <a href="{% url 'core:movie_info' movie_id=movie.uuid %}">

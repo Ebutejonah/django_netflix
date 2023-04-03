@@ -57,9 +57,13 @@ class MoviesList(View):
             profile=Profile.objects.get(uuid=profile_id)
             movies=Movie.objects.filter(age_limit=profile.age_limit)
             videos = Video.objects.filter(age_limit=profile.age_limit)
-            showcase = movies[1]
-            film = videos[2]
-            context={'movies':movies , 'showcase':showcase, 'film':film}
+            if profile.age_limit == 'Kids':
+                showcase = movies[1]
+                film = videos[2]
+            else:
+                showcase = movies[0]
+                film = videos[3]
+            context={'movies':movies , 'showcase':showcase, 'film':film,'profile':profile}
             if profile not in request.user.profiles.all():
                 return redirect('core:profile_list')
             return render(request,'movies_list.html',context)
