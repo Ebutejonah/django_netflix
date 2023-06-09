@@ -111,12 +111,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default':{
-        'ENGINE': "django.db.backends.postgresql",
-        'NAME': config('NAME'),#os.environ['NAME'],
-        'USER': config('USER'),#os.environ['USER'],
-        'PASSWORD': config('PASSWORD'),#os.environ['PASSWORD'],
-        'HOST': config('HOST'),#os.environ['HOST'],
-        'PORT': "5432",
+        'ENGINE': config('DATABASE_URL'),
+        'NAME': config('PGDATABASE'),#os.environ['NAME'],
+        'USER': config('PGUSER'),#os.environ['USER'],
+        'PASSWORD': config('PGPASSWORD'),#os.environ['PASSWORD'],
+        'HOST': config('PGHOST'),#os.environ['HOST'],
+        'PORT': config('PGPORT'),
     }
 }
 
