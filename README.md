@@ -1,0 +1,1 @@
+# A Netflix clone web app built with Django and tailwindcss. The django-allauth library handles the authentication process. Movies available to users are based on the maturity level selected on creating a profile. The maturity level could be either Adults or Kids.
