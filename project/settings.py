@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
     #Third-Party Apps
     'allauth',
-    'psycopg2',
+    #'psycopg2',
     'allauth.account',
     'allauth.socialaccount',
     'storages',
@@ -102,14 +102,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    },
-#}
-
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
+}
+
+'''DATABASES = {
     'default':{
         'ENGINE': config('DATABASE_URL'),
         'NAME': config('PGDATABASE'),#os.environ['NAME'],
@@ -118,7 +118,7 @@ DATABASES = {
         'HOST': config('PGHOST'),#os.environ['HOST'],
         'PORT': config('PGPORT'),
     }
-}
+}'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
