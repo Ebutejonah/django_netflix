@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
     #Third-Party Apps
     'allauth',
-    #'psycopg2',
+    'psycopg2',
     'allauth.account',
     'allauth.socialaccount',
     'storages',
@@ -109,14 +109,17 @@ DATABASES = {
     },
 }
 
-'''DATABASES = {
+'''
+Database setup for production environment
+
+DATABASES = {
     'default':{
-        'ENGINE': config('DATABASE_URL'),
-        'NAME': config('PGDATABASE'),#os.environ['NAME'],
-        'USER': config('PGUSER'),#os.environ['USER'],
-        'PASSWORD': config('PGPASSWORD'),#os.environ['PASSWORD'],
-        'HOST': config('PGHOST'),#os.environ['HOST'],
-        'PORT': config('PGPORT'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('NAME'),#os.environ['NAME'],
+        'USER': config('USER'),#os.environ['USER'],
+        'PASSWORD': config('PASSWORD'),#os.environ['PASSWORD'],
+        'HOST': config('HOST'),#os.environ['HOST'],
+        'PORT': config('PORT'),
     }
 }'''
 
@@ -165,36 +168,45 @@ LOGIN_REDIRECT_URL = '/profile/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
 
-SITE_ID = 1
 
 AUTH_USER_MODEL = 'core.CustomUser'
+
+
+#django-allauth setup
+SITE_ID = 1
 
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-#AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-
+#AWS set up for access to AWS services
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_QUERYSTRING_AUTH = False
 
+#defining authentication backend. In this case, the django-allauth
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',  
 ]
 
-
+'''S3 storage setting for media files in production
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+'''
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#tailwindcss config
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ["127.0.0.1"]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+
 CSRF_TRUSTED_ORIGINS = ['https://netchlix.com','https://www.netchlix.com','http://127.0.0.1','https://djangonetflix-production.up.railway.app']
