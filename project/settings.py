@@ -105,26 +105,26 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-}
+}'''
 
-'''
-Database setup for production environment
+
+#Database setup for production environment
 
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME'),#os.environ['NAME'],
-        'USER': config('USER'),#os.environ['USER'],
-        'PASSWORD': config('PASSWORD'),#os.environ['PASSWORD'],
-        'HOST': config('HOST'),#os.environ['HOST'],
-        'PORT': config('PORT'),
+        'NAME': config('PGDATABASE'),#os.environ['NAME'],
+        'USER': config('PGUSER'),#os.environ['USER'],
+        'PASSWORD': config('PGPASSWORD'),#os.environ['PASSWORD'],
+        'HOST': config('PGHOST'),#os.environ['HOST'],
+        'PORT': config('PGPORT'),
     }
-}'''
+}
 
 #Cloudinary setup(MEDIA FILE STORAGE)
 CLOUDINARY_STORAGE = {
