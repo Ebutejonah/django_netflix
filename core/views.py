@@ -61,8 +61,8 @@ class MoviesList(View):
                 showcase = movies[2]
                 film = videos[2]
             else:
-                showcase = movies[3]
-                film = videos[3]
+                showcase = movies[2]
+                film = videos[2]
             context={'movies':movies , 'showcase':showcase, 'film':film,'profile':profile}
             if profile not in request.user.profiles.all():
                 return redirect('core:profile_list')
@@ -81,3 +81,4 @@ class MovieDetails(View):
             return render(request,'movie_details.html',context)
         except Movie.DoesNotExist:
             return redirect('core:profile_list')
+

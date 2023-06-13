@@ -35,7 +35,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1','djangonetflix-production.up.railway.app']
 
