@@ -35,7 +35,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['netchlix.com','www.netchlix.com','127.0.0.1','djangonetflix-production.up.railway.app']
 
@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    #cloudinary setup for media files in production
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +125,15 @@ DATABASES = {
         'PORT': config('PORT'),
     }
 }'''
+
+#Cloudinary setup(MEDIA FILE STORAGE)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUD_NAME'),
+    'API_KEY': config('API_KEY'),
+    'API_SECRET': config('API_SECRET'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.VideoMediaCloudinaryStorage'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -196,7 +208,6 @@ AUTHENTICATION_BACKENDS = [
 '''S3 storage setting for media files in production
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 '''
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

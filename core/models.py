@@ -1,15 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
+from cloudinary_storage.storage import MediaCloudinaryStorage
+
 
 AGE_CHOICES=(
     ('Adult','Adult'),
-    ('Kids','Kids')
+    ('Kids','Kids'),
 )
 
 MOVIE_CHOICES=(
     ('Single Movie','Single'),
-    ('Seasonal Movie','Seasonal')
+    ('Seasonal Movie','Seasonal'),
 )
 
 class CustomUser(AbstractUser):
@@ -31,7 +33,7 @@ class Movie(models.Model):
     uuid=models.UUIDField(default=uuid.uuid4)
     type=models.CharField(max_length=200, choices=MOVIE_CHOICES)
     videos=models.ManyToManyField('Video')
-    flyers=models.ImageField(upload_to='flyers')
+    flyers=models.ImageField(upload_to='flyers', storage=MediaCloudinaryStorage())
     age_limit=models.CharField(max_length=10,choices=AGE_CHOICES)
 
     def __str__(self):
